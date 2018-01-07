@@ -1,0 +1,176 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#LandingPage {
+    background-image: url("images/Sunset NYC.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.Hello {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 10vw;
+    padding-top: 10%;
+}
+
+#landingButtons {
+    text-align: center;
+    padding-top: 45%;
+}
+
+#tourButton {
+    background-color: rgba(0, 0, 0, .4);
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    padding: 15px;
+    width: 20%;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.5vw;
+}
+
+#resumeButton {
+    background-color: rgba(0, 0, 0, .4);
+    border: 2px solid red;
+    color: red;
+    padding: 15px;
+    width: 20%;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.5vw;
+}
+
+.arrow {
+    border-right: 7px solid;
+    border-bottom: 7px solid;
+    height: 2vw;
+    width: 2vw;
+    transform: rotate(-135deg);
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+.udArrow {
+    border-right: 7px solid;
+    border-bottom: 7px solid;
+    color: whitesmoke;
+    border-color: whitesmoke;
+    height: 3vw;
+    width: 3vw;
+    transform: rotate(45deg);
+    margin: 0 auto;
+    margin-bottom: 5%;
+}
+
+.backButton {
+    background: transparent;
+    border: 2px solid #1e4215;
+    color: #1e4215;
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-size: 1vw;
+    font-weight: BOLD;
+    margin-top: 5%;
+}
+
+.whiteBackButton {
+    background: transparent;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    padding: 5px;
+    width: 50%;
+    text-align: center;
+    display: inline-block;
+    font-size: 1vw;
+    font-weight: BOLD;
+    margin-top: 5%;
+}
+
+.nextButton {
+    background: transparent;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    padding: 5px;
+    width: 25vw;
+    text-align: center;
+    display: inline-block;
+    font-size: 2vw;
+    font-weight: BOLD;
+    margin-top: 1%;
+}
+
+#Bio {
+    background-image: url("images/Indian Seats Top.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.title {
+    font-family: "CommercialScript BT";
+    text-align: center;
+    font-size: 5vw;
+    color: darkslategray;
+}
+
+.ProPic {
+    max-height: 25vw;
+    max-width: 25vw;
+    border-radius: 50%;
+    padding-top: 5vw;
+}
+
+.Intro {
+    background-color: rgba(0, 0, 0, .4);
+    color: whitesmoke;
+    text-align: left;
+    font-size: medium;
+    font-weight: BOLD;
+    margin-top: 7%;
+}
+
+#ProjectsSkills {
+    background-image: url("images/Swan on Lake.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    font-size: 3vw;
+}
+
+.projects {
+    background-color: rgba(0, 0, 0, .3);
+    padding-left: 3vw;
+    color: whitesmoke;
+}
+
+.projects h3 {
+    color: gold;
+}
+
+#Sandbox {
+    background-image: url("images/Nave Snowy.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.update {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: BOLD;
+    color: whitesmoke;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111542045-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111542045-1');
+    </script>
+
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Joshua Philipose</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("a").on('click', function(event) {
+
+                // Make sure we have a hash
+                if (this.hash !== "") {
+                    // Prevent default click behavior so it doesn't conflict with our new behavior
+                    event.preventDefault();
+
+                    // Store current hash before we change the hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // 800 specifies milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<section id="LandingPage">
+    <div class="col-md-12">
+        <h1 class="Hello">Hello, I'm Josh!</h1>
+    </div>
+    <div id="landingButtons">
+        <a href="#Bio" class="btn" id="tourButton">Tour the Website</a>
+        <a href="images/Joshua Philipose Resume.pdf" target="_blank" class="btn" id="resumeButton">Download Resume</a>
+    </div>
+
+</section>
+
+<section id="Bio">
+    <div class="col-md-2 col-sm-12">
+        <a href="#LandingPage" class="btn backButton"> <div class="arrow"></div>HOME</a>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <h1 class="title">Biography</h1>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <img src="images/JoshPic.jpg" class="ProPic center-block">
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <p class="Intro">My name is Joshua Philipose, and I'm studying Computer Science at Georgia Tech,
+            with a concentration in UX & AI. I'm originally from New York, but will follow opportunities
+            wherever they are. After graduation, I'd like to be a Product Manager or SWE at a company that makes
+            products with a toothbrush spirit - used often enough to be taken for granted, but would absolutely
+            be missed if it disappeared.</p>
+
+        <p class="Intro">I'm into blockchain (releasing a course soon!), predictive machine learning,
+            and automating everything. I'm in the process of becoming a TA for my Computer Organization class,
+            which teaches us about computer architecture, from logic gates, to assembly, to C and the technicalities
+            within - fascinating stuff! Instead of detailing my work experience here, I'll direct you to my
+            <a href="#LandingPage" style="color: red">resume</a> - you
+            can download it from my home page!</p>
+
+        <p class="Intro">Technical interests aside, I love early morning workouts, longboarding,
+            chilling with friends, writing snappy bios for my website, and chicken parmigiana. I also enjoy
+            the great outdoors - ALL the photos you see on this website were taken on my travels!</p>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+        <a href="#ProjectsSkills" class="btn nextButton" style="color: whitesmoke">PROJECTS & SKILLS<div class="udArrow"></div></a>
+    </div>
+</section>
+
+
+<section id="ProjectsSkills">
+    <div class="col-md-2 col-sm-12">
+        <a href="#Bio" class="btn backButton"> <div class="arrow"></div>BIO</a>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <h1 class="title">Projects & Skills</h1>
+    </div>
+
+
+    <div class="col-md-6 col-sm-12 projects">
+        <h1 class="header">I've made: </h1>
+        <h3>This Website</h3>
+        <h4>A simple, responsive web page to display a little about myself.</h4>
+        <h3>Defend the Wall</h3>
+        <h4>A full stack GameBoy Advance game coded in C, loosely related to Space Invaders</h4>
+        <h3>IdentifiAR</h3>
+        <h4>An AR application that identifies items using the Microsoft HoloLens, Azure, and the NCR API.</h4>
+        <h3>TilvuStocks</h3>
+        <h4>A Python script that buys and sells stocks autonomously in a simulated environment.</h4>
+        <h3>The Vendor Audit Rate App</h3>
+        <h4>A web app for Home Depot that automates database updates, eliminating 99.5% of the time needed for the task
+            (2 hours -> 20 seconds.)</h4>
+    </div>
+    <div class="col-md-6 col-sm-12 projects">
+        <h1 class="header">Using: </h1>
+        <h3>Java, C, Python</h3>
+        <h3>JavaScript, SQL, HTML & CSS</h3>
+        <h3>Thymeleaf, Bootstrap, JavaFX</h3>
+        <h3>JUnits, JSON, Github, and Springboot</h3>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+        <a href="#Sandbox" class="btn nextButton" style="color: whitesmoke">SANDBOX<div class="udArrow"></div></a>
+    </div>
+</section>
+
+<section id="Sandbox">
+    <div class="col-md-2 col-sm-12">
+        <a href="#ProjectsSkills" class="btn whiteBackButton" style="color: whitesmoke"> <div class="arrow"></div>PROJECTS</a>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <h1 class="title">Sandbox</h1>
+    </div>
+
+    <div class="col-md-12 update" style="padding-left: 30vw; padding-right: 30vw; background-color: rgba(0, 0, 0, .3)">
+        <p>Check back here soon for an update! I'm building a project
+            that'll allow everyone to see the world of CS from my perspective.</p>
+    </div>
+
+    <div class="col-md-12" style="text-align: center; padding-top: 25vw">
+        <a href="#LandingPage" class="btn nextButton" style="color: whitesmoke">Back To Top<div class="arrow"></div></a>
+    </div>
+</section>
+
+
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
