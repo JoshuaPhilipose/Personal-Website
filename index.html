@@ -45,9 +45,9 @@
 
     <script>
         function calculateROI() {
-            var amount = document.getElementById("investmentAmount");
-            var crypto = document.getElementById("selectCrypto");
-            var date = document.getElementById("investmentDate");
+            var amount = document.getElementById("investmentAmount").value;
+            var crypto = document.getElementById("selectCrypto").value;
+            var date = document.getElementById("investmentDate").value;
 
             if (!amount || !crypto || !date) {
                 document.getElementById("ROIresult").innerHTML = "Please make sure all fields are filled in!";
