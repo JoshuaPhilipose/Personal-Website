@@ -42,25 +42,45 @@
             });
         });
     </script>
+
+    <script>
+        function calculateROI() {
+            var amount = document.getElementById("investmentAmount");
+            var crypto = document.getElementById("selectCrypto");
+            var date = document.getElementById("investmentDate");
+
+            if (!amount || !crypto || !date) {
+                document.getElementById("ROIresult").innerHTML = "Please make sure all fields are filled in!";
+            } else {
+                var currPrice = 2; //find out how to actually get the current crypto price
+                var oldPrice = 1; //historic price at the investment date
+                var changeFactor = currPrice / oldPrice;
+
+                amount = amount * changeFactor;
+                changeFactor = changeFactor * 100;
+
+                document.getElementById("ROIresult").innerHTML =
+                    ("Your investment would be worth " + amount + " today - " + changeFactor + "% change!");
+            }
+        }
+    </script>
+
 </head>
 <body>
 <section id="LandingPage">
     <div class="col-md-12">
-        <h1 class="Hello">Hello, I'm Josh!</h1>
+        <h1 class="Hello"> - Joshua Philipose - </h1>
     </div>
     <div id="landingButtons">
-        <a href="#Bio" class="btn" id="tourButton">Tour the Website</a>
+        <a href="#Bio" class="btn" id="tourButton">About Me</a>
         <a href="images/Joshua Philipose Resume.pdf" target="_blank" class="btn" id="resumeButton">Download Resume</a>
     </div>
 
 </section>
 
 <section id="Bio">
-    <div class="col-md-2 col-sm-12">
-        <a href="#LandingPage" class="btn backButton"> <div class="arrow"></div>HOME</a>
-    </div>
-    <div class="col-md-8 col-sm-12">
-        <h1 class="title">Biography</h1>
+    <div class="col-md-12">
+        <h1 class="title">About Me</h1>
     </div>
     <div class="col-md-6 col-sm-12">
         <img src="images/JoshPic.jpg" class="ProPic center-block">
@@ -73,27 +93,21 @@
             be missed if it disappeared.</p>
 
         <p class="Intro">I'm into blockchain (releasing a course soon!), predictive machine learning,
-            and automating everything. I'm in the process of becoming a TA for my Computer Organization class,
-            which teaches us about computer architecture, from logic gates, to assembly, to C and the technicalities
-            within - fascinating stuff! Instead of detailing my work experience here, I'll direct you to my
-            <a href="#LandingPage" style="color: red">resume</a> - you
-            can download it from my home page!</p>
-
-        <p class="Intro">Technical interests aside, I love early morning workouts, longboarding,
+            and automating everything. Instead of detailing my work experience here, I'll direct you to my
+            <a href="#LandingPage" style="color: red">resume</a>
+             - you can download it from my home page! Technical interests aside, I love early morning workouts, longboarding,
             chilling with friends, writing snappy bios for my website, and chicken parmigiana. I also enjoy
             the great outdoors - ALL the photos you see on this website were taken on my travels!</p>
+
+        <p class="Intro"></p>
     </div>
     <div class="col-md-12" style="text-align: center">
         <a href="#ProjectsSkills" class="btn nextButton" style="color: whitesmoke">PROJECTS & SKILLS<div class="udArrow"></div></a>
     </div>
 </section>
 
-
 <section id="ProjectsSkills">
-    <div class="col-md-2 col-sm-12">
-        <a href="#Bio" class="btn backButton"> <div class="arrow"></div>BIO</a>
-    </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-12">
         <h1 class="title">Projects & Skills</h1>
     </div>
 
@@ -120,21 +134,50 @@
         <h3>JUnits, JSON, Github, and Springboot</h3>
     </div>
     <div class="col-md-12" style="text-align: center">
-        <a href="#Sandbox" class="btn nextButton" style="color: whitesmoke">SANDBOX<div class="udArrow"></div></a>
+        <a href="#Sandbox" class="btn nextButton" style="color: whitesmoke">HINDSIGHT INVESTING<div class="udArrow"></div></a>
     </div>
 </section>
 
 <section id="Sandbox">
-    <div class="col-md-2 col-sm-12">
-        <a href="#ProjectsSkills" class="btn whiteBackButton" style="color: whitesmoke"> <div class="arrow"></div>PROJECTS</a>
-    </div>
-    <div class="col-md-8 col-sm-12">
-        <h1 class="title">Sandbox</h1>
+    <div class="col-md-12">
+        <h1 class="update">Hindsight is 20/20</h1>
     </div>
 
-    <div class="col-md-12 update" style="padding-left: 30vw; padding-right: 30vw; background-color: rgba(0, 0, 0, .3)">
-        <p>Check back here soon for an update! I'm building a project
-            that'll allow everyone to see the world of CS from my perspective.</p>
+    <div class="col-md-12 " style="padding-left: 10vw; padding-right: 10vw; background-color: rgba(0, 0, 0, .3); color: whitesmoke; text-alight: center">
+        <br>
+        <p>With the recent cryptocurrency rush, many people (myself included!) have wondered how much
+            money they would've made if only they had invested in the past. Currently, I'm working on a
+            quick tool to let you figure out exactly how much your past investment could've earned!</p>
+        <br>
+        <br>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label for="investmentAmount">Enter Investment Amount</label>
+                <input type="number" class="form-control" id="investmentAmount">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label for="selectCrypto">Select Cryptocurrency</label>
+            <select class="form-control" id="selectCrypto">
+                <option>Bitcoin</option>
+                <option>Litecoin</option>
+                <option>Ether</option>
+                <option>Ripple</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label for="investmentDate">Enter Investment Date</label>
+                <input type="date" class="form-control" id="investmentDate">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-success calculate" onclick="calculateROI()">Calculate!</button>
+        </div>
+        <div class="col-md-12">
+            <h1 id="ROIresult" style="text-align: center"></h1>
+        </div>
+
     </div>
 
     <div class="col-md-12" style="text-align: center; padding-top: 25vw">
