@@ -17,6 +17,24 @@
     <link rel="stylesheet" href="styles.css">
     <title>Joshua Philipose</title>
 
+    <script>
+        window.onload = function() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if(dd < 10){
+                dd = '0' + dd;
+            }
+            if(mm < 10){
+                mm = '0' + mm;
+            }
+
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("investmentDate").setAttribute("max", today);
+        }
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -52,15 +70,45 @@
             if (!amount || !crypto || !date) {
                 document.getElementById("ROIresult").innerHTML = "Please make sure all fields are filled in!";
             } else {
-                var currPrice = 2; //find out how to actually get the current crypto price
-                var oldPrice = 1; //historic price at the investment date
-                var changeFactor = currPrice / oldPrice;
+                try {
+                    function reqListener() {
+                        console.log(this.responseText);
+                    }
 
-                amount = amount * changeFactor;
-                changeFactor = changeFactor * 100;
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open("GET", "https://api.coindesk.com/v1/bpi/currentprice/USD.json", false);
+                    xmlHttp.addEventListener("load", reqListener);
+                    xmlHttp.send();
+                    var response = JSON.parse(xmlHttp.responseText);
+                    var currPrice = response.bpi.USD.rate_float;
 
-                document.getElementById("ROIresult").innerHTML =
-                    ("Your investment would be worth " + amount + " today - " + changeFactor + "% change!");
+                    var xmlHttp2 = new XMLHttpRequest();
+                    xmlHttp2.open("GET", ("https://api.coindesk.com/v1/bpi/historical/close.json?start=" + date + "&end=" + date), false);
+                    xmlHttp2.addEventListener("load", reqListener);
+                    xmlHttp2.send();
+                    var response2 = JSON.parse(xmlHttp2.responseText);
+                    var oldPrice = response2.bpi[date];
+                    var changeFactor = ((currPrice - oldPrice) / oldPrice);
+
+                    amount = amount * (changeFactor + 1);
+                    changeFactor = changeFactor * 100;
+                    if (currPrice < oldPrice) {
+                        changeFactor = 0 - changeFactor;
+                    }
+
+                    document.getElementById("ROIresult").innerHTML =
+                        ("Your investment would be worth $" + Math.round(amount * 100) / 100 + " today, a "
+                            + Math.round(changeFactor * 1000.0) / 1000.0 + "% change!");
+                    document.getElementById("curPrice").innerHTML = ("Current Price: $" + currPrice);
+                    document.getElementById("oldPrice").innerHTML = ("Old Price: $" + oldPrice);
+
+                }
+                catch(err) {
+                    document.getElementById("ROIresult").innerHTML = ("Sorry, we've run into an error! The error message"
+                        + " is printed below.");
+                    document.getElementById("curPrice").innerHTML = err.message;
+                    document.getElementById("oldPrice").innerHTML = ("Try another search!");
+                }
             }
         }
     </script>
@@ -72,8 +120,9 @@
         <h1 class="Hello"> - Joshua Philipose - </h1>
     </div>
     <div id="landingButtons">
-        <a href="#Bio" class="btn" id="tourButton">About Me</a>
+        <a href="#Bio" class="btn tourButton" style="color: whitesmoke">About Me</a>
         <a href="images/Joshua Philipose Resume.pdf" target="_blank" class="btn" id="resumeButton">Download Resume</a>
+        <a href="#Sandbox" class="btn tourButton" style="color: whitesmoke">Bitcoin Investment Calculator</a>
     </div>
 
 </section>
@@ -102,7 +151,7 @@
         <p class="Intro"></p>
     </div>
     <div class="col-md-12" style="text-align: center">
-        <a href="#ProjectsSkills" class="btn nextButton" style="color: whitesmoke">PROJECTS & SKILLS<div class="udArrow"></div></a>
+        <a href="#ProjectsSkills" class="btn nextButton" style="color: whitesmoke; margin-top: 5%">PROJECTS & SKILLS<div class="udArrow"></div></a>
     </div>
 </section>
 
@@ -134,7 +183,7 @@
         <h3>JUnits, JSON, Github, and Springboot</h3>
     </div>
     <div class="col-md-12" style="text-align: center">
-        <a href="#Sandbox" class="btn nextButton" style="color: whitesmoke">HINDSIGHT INVESTING<div class="udArrow"></div></a>
+        <a href="#Sandbox" class="btn nextButton" style="color: whitesmoke; margin-top: 5px">HINDSIGHT INVESTING<div class="udArrow"></div></a>
     </div>
 </section>
 
@@ -145,9 +194,9 @@
 
     <div class="col-md-12 " style="padding-left: 10vw; padding-right: 10vw; background-color: rgba(0, 0, 0, .3); color: whitesmoke; text-alight: center">
         <br>
-        <p>With the recent cryptocurrency rush, many people (myself included!) have wondered how much
-            money they would've made if only they had invested in the past. Currently, I'm working on a
-            quick tool to let you figure out exactly how much your past investment could've earned!</p>
+        <p style="font-size: medium">With the recent Bitcoin rush, many people (myself included!) have wondered how much
+            money they would've made if only they had invested in the past. Using this tool, you can check!
+            Price history is limited to July 18th, 2010 - Today.</p>
         <br>
         <br>
         <div class="col-md-4 col-sm-12">
@@ -160,15 +209,15 @@
             <label for="selectCrypto">Select Cryptocurrency</label>
             <select class="form-control" id="selectCrypto">
                 <option>Bitcoin</option>
-                <option>Litecoin</option>
-                <option>Ether</option>
-                <option>Ripple</option>
+                <!--<option>Litecoin</option>-->
+                <!--<option>Ether</option>-->
+                <!--<option>Ripple</option>-->
             </select>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label for="investmentDate">Enter Investment Date</label>
-                <input type="date" class="form-control" id="investmentDate">
+                <input type="date" class="form-control" id="investmentDate" min="2010-07-18" max="9999-12-31">
             </div>
         </div>
         <div class="col-md-12">
@@ -176,11 +225,14 @@
         </div>
         <div class="col-md-12">
             <h1 id="ROIresult" style="text-align: center"></h1>
+            <h3 id="curPrice" style="text-align: center"></h3>
+            <h3 id="oldPrice" style="text-align: center"></h3>
+
         </div>
 
     </div>
 
-    <div class="col-md-12" style="text-align: center; padding-top: 25vw">
+    <div class="col-md-12" style="text-align: center; margin-top: 6%">
         <a href="#LandingPage" class="btn nextButton" style="color: whitesmoke">Back To Top<div class="arrow"></div></a>
     </div>
 </section>
